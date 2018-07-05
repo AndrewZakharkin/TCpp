@@ -18,13 +18,31 @@ void Algo::runAlgo(Node *currentNode) {
         int curWeight = neighbours[i]->getWeight();
         if(curWeight > (baseWeight + weights[i])){
             curWeight = baseWeight + weights[i];
-            neighbours[i]->setVisited(false);
+            //neighbours[i]->setVisited(false);
         }
         neighbours[i]->setWeight(curWeight);
     }
-    for(int i = 0; i < neighbours.size(); ++i){
-        if(!neighbours[i]->isVisited()){
-            runAlgo(neighbours[i]);
+    Node * nextToCheck = nullptr;
+    do{
+        nextToCheck = getNearestUnvisitedNeighbour(currentNode);
+        if(nextToCheck){
+            runAlgo(nextToCheck);
+        }
+    }while(nextToCheck);
+}
+
+Node *Algo::getNearestUnvisitedNeighbour(Node *node) {
+    //std::vector<Node *> getNeighbours();
+    //    std::vector<int> getWeights();
+    auto ns = node->getNeighbours();
+    auto ws = node->getWeights();
+    Node * result = nullptr;
+    int minWeight = 10000000;
+    for(int i = 0; i < ns.size(); ++i){
+        if(ws[i] < minWeight && !ns[i]->isVisited()){
+            minWeight = ws[i];
+            result = ns[i];
         }
     }
+    return result;
 }

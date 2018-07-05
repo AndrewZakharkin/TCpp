@@ -14,6 +14,7 @@ public:
     Algo(Node *root, std::array<Node*, 6> lst):rootNode(root), flatList(lst){};
     void runAlgo(Node* currentNode);
 private:
+    Node * getNearestUnvisitedNeighbour(Node * node);
     Node * rootNode;
     std::array<Node*, 6> flatList;
 };
