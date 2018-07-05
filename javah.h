@@ -17,7 +17,7 @@ extern "C" {
  * Method:    tst
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_zakharkin_Main_Entry_tst(JNIEnv * env, jclass cls, jstring str);
+JNIEXPORT jobject JNICALL Java_com_zakharkin_Main_Entry_tst(JNIEnv * env, jclass cls, jstring str);
 
 #ifdef __cplusplus
 }
