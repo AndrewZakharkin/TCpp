@@ -4,10 +4,26 @@
 #include "Algorythm/Builder.h"
 #include "Algorythm/Algo.h"
 /*int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << std::endl;
 
     return 0;
 }*/
+
+void algoRun() {
+    std::cout << "-------------CPP STARTS HERE-----------" << std::endl;
+    Builder b;
+    std::pair<Node*, std::array<Node*, 6>> t = b.buildGraph();
+    Algo a(t.first, t.second);
+    a.runAlgo(t.first);
+    for(Node* node : t.second) {
+        std::cout << "Node " << node->getName() << " has weight " << node->getWeight() << std::endl;
+    }
+    std::cout << "Cleaning" << std::endl;
+    for(Node * node  : t.second){
+        delete node;
+    }
+    std::cout << "-------------END OF CPP CODE-----------" << std::endl;
+}
 
 JNIEXPORT jobject JNICALL Java_com_zakharkin_Main_Entry_tst(JNIEnv * env, jclass cls, jstring str)
 {
@@ -24,15 +40,7 @@ JNIEXPORT jobject JNICALL Java_com_zakharkin_Main_Entry_tst(JNIEnv * env, jclass
             std::cout << "com/zakharkin/Add/TestCls CONSTRUCTOR is found. Instantiating object" << std::endl;
             jobject o = env->NewObject(testCls, ctor);
 
-            std::cout << "-------------CPP STARTS HERE-----------" << std::endl;
-            Builder b;
-            std::pair<Node*, std::array<Node*, 6>> t = b.buildGraph();
-            Algo a(t.first, t.second);
-            a.runAlgo(t.first);
-            for(Node* node : t.second){
-                std::cout << "Node " << node->getName() << " has weight " << node->getWeight() << std::endl;
-            }
-            std::cout << "-------------END OF CPP CODE-----------" << std::endl;
+            algoRun();
             return o;
         }
         else{
