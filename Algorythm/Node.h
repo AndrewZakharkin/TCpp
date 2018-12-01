@@ -1,12 +1,12 @@
 //
 // Created by andre on 04.07.2018.
 //
-
 #ifndef FIRSTTEST_NODE_H
 #define FIRSTTEST_NODE_H
 #include <list>
 #include <string>
 #include <valarray>
+#include <vector>
 
 class Node {
 public:
